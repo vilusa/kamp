@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kamp</title>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : 'Kamp'  %>
+       
+            
+      </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

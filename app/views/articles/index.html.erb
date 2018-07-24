@@ -1,10 +1,18 @@
+<% content_for :title do %>
+  Listings Article
+<% end %>
 <h1>Listing articles</h1>
- 
+ <%= form_tag("/search", method: "get") do%>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search")%>
+<% end %>
 <%= link_to 'New article', new_article_path %>
 <table>
   <tr>
     <th>Title</th>
     <th>Text</th>
+    <th>Yorum</th>
     <th></th>
   </tr>
  
@@ -12,7 +20,12 @@
     <tr>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
+     <td><%= article.comments.count %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

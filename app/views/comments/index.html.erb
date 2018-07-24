@@ -1,0 +1,25 @@
+<h2>Comments</h2>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Article ID</th>
+    <th>Article Title</th>
+    <th>Article Created Date</th>
+  </tr>
+ 
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.id %></td>
+      <td><%= comment.commenter %></td>
+      <td><%= comment.body %></td>
+      <td><%= link: to comment.article.id, %></td>
+      <td><%= comment.article.title %></td>
+      <td><%= comment.article.created_at.strftime("%d-%m-%Y") %></td>
+     
+     
+     
+    </tr>
+  <% end %>
+</table>
