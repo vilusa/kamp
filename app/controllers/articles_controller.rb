@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
-	 http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+	 #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+	# before_action actionlardan önce çalışacak fonksiyon 
+ 	before_action :find_article, only: [:show, :edit, :update, :destroy] 
 	# Article index all tüm verileri döndürür
 	def index
 		# title params q araması yapalım
@@ -12,22 +14,19 @@ class ArticlesController < ApplicationController
     	respond_to do |format|
     		format.html # index.html.erb
     		format.xml { render xml: @articles} #article.json json çıktı verir
-    		format.json { render json: @articles } #article.xml xml çıktı verir
+  		format.json { render json: @articles } #article.xml xml çıktı verir
     	end
 
   	end
 	def show
-    	@article = Article.find(params[:id])
   	end
   	def edit
-  		@article = Article.find(params[:id])
 	end
 	def new
 		@article = Article.new
 	end
 
 	def update
-		@article = Article.find(params[:id])
 
 		if @article.update(article_params)
 			redirect_to @article
@@ -37,7 +36,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-		@article = Article.find(params[:id])
 
 		@article.destroy
 
@@ -56,6 +54,7 @@ class ArticlesController < ApplicationController
 	  @article = Article.new(article_params)
 	 
 	  if @article.save
+	  	flash[:notice] = "New article successfuly saved."
 	  redirect_to @article
 	  else
 	  	render 'new'
@@ -69,6 +68,8 @@ class ArticlesController < ApplicationController
 	  def article_params
 	    params.require(:article).permit(:title, :text)
 	  end
-
+	def find_article
+ 		@article = Article.find(params[:id])
+ 	end
 	   
 end
