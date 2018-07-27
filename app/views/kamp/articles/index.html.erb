@@ -7,7 +7,7 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search")%>
 <% end %>
-<%= link_to 'New article', new_article_path %>
+<%= link_to 'New article', new_kamp_article_path %>
 <table>
   <tr>
     <th>Title</th>
@@ -21,9 +21,9 @@
       <td><%= article.title %></td>
       <td><%= article.text %></td>
      <td><%= article.comments.count %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
+      <td><%= link_to 'Show', kamp_article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_kamp_article_path(article) %></td>
+      <td><%= link_to 'Destroy', kamp_article_path(article),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>

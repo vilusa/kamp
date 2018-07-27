@@ -1,5 +1,5 @@
 class Kamp::CommentsController < ApplicationController
-  # class'dan sonra Kamp:: namespace belirtmek için kullanılıyor
+  
 	def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
